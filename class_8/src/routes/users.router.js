@@ -42,7 +42,8 @@ router.get('/', (req, res) => {
  * Si hay un problema en el middleware auth, el flujo de la solicitud puede cortarse allí directamente (return),
  * en caso de estar todo ok, seguirá (next) al siguiente "eslabón" (uploader en este caso).
  */
-router.post('/', auth, uploader.single('thumbnail'), (req, res) => {
+// router.post('/', auth, uploader.array('thumbnail', 3), (req, res) => { // gestión de múltiples archivos
+router.post('/', auth, uploader.single('thumbnail'), (req, res) => { // gestión de archivo único
     const { firstName, lastName } = req.body; // desestructuramos (extraemos) las ppdades que nos interesan del body
 
     if (firstName != '' && lastName != '') {
