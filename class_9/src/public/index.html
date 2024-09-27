@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coder 70275</title>
+</head>
+<body>
+    <h1>Coder 70275</h1>
+
+    <!--
+    Se puede prescindir de la primer parte de la url en el action,
+    /api/users significa que intentará hacer la solicitud utilizando el mismo
+    dominio desde el cual cargó este index
+    (en nuestro caso sería http://localhost:5050 o el puerto que se haya usado)
+
+    MUY IMPORTANTE:
+    1- Ruta correcta en action
+    2- Método post indicado
+    3- Encoding type como multipart
+    4- Tipo submit en el botón que dispara el formulario
+    (también podría hacerse de forma programática desde código Javascript)
+     -->
+    <form action="/api/users" method="post" enctype="multipart/form-data">
+        <input type="text" id="firstName" name="firstName">
+        <br />
+        <input type="text" id="lastName" name="lastName">
+        <br />
+        <input type="file" id="thumbnail" name="thumbnail">
+        <br />
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
