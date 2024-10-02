@@ -5,16 +5,17 @@
 
 import { Router } from 'express';
 import { uploader } from '../uploader.js';
+import { users } from '../config.js';
 
 
 const router = Router();
 
-// Este array con usuarios de prueba, que antes estaba en app, ahora queda en users.router
+/* // Este array con usuarios de prueba, que antes estaba en app, ahora queda en users.router
 const users = [
     { id: 1, firstName: 'Juan', lastName: 'Perez' },
     { id: 2, firstName: 'Carlos', lastName: 'Perren' },
     { id: 3, firstName: 'Luis', lastName: 'Gonzalez' }
-];
+]; */
 
 const auth = (req, res, next) => {
     console.log('Ejecuta el middleware de autenticación de usuario');

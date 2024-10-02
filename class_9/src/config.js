@@ -13,4 +13,11 @@ const config = {
 };
 
 
+export const users = [
+    { id: 1, firstName: 'Juan', lastName: 'Perez' },
+    { id: 2, firstName: 'Carlos', lastName: 'Perren' },
+    { id: 3, firstName: 'Luis', lastName: 'Gonzalez' }
+];
+
+
 export default config;
