@@ -4,11 +4,11 @@
 </div>
 
 {{!-- Podemos recuperar el cliente de socket.io con esta ruta, si estamos usando una plantilla de Handlebars --}}
-{{!-- <script src="/socket.io/socket.io.js"></script> --}}
+<script src="/socket.io/socket.io.js"></script>
 
 {{!-- Si este front está alojado en otro lugar, debemos descargar el cliente desde una CDN por ejemplo.
-Podemos también usar esta opción en Handlebars --}}
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+Por supuesto, podemos también usar esta opción con Handlebars --}}
+{{!-- <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.8.0/build/cjs/index.min.js"></script> --}}
 
 <script>
     // Función para conexión asíncrona al servidor socket.io
@@ -22,8 +22,12 @@ Podemos también usar esta opción en Handlebars --}}
             });
             
             socket.on('connect_error', err => {
-                console.error('ERROR al conectar servidor socket.io', error);
-                reject(error);
+                console.error('ERROR al conectar servidor socket.io', err);
+                reject(err);
+            });
+
+            socket.on('welcome', data => {
+                console.log(data);
             });
         });
     }
@@ -32,13 +36,11 @@ Podemos también usar esta opción en Handlebars --}}
     // Si usamos Handlebars, podemos dejar la url vacía, conectará de forma automática al servidor local,
     // si este front está alojado en otro lugar, indicamos la ruta
     // const socketClient = await connectSocketServer('https://serverremoto.com:puerto', options);
-    const socketClient = await connectSocketServer('');
+    (async () => {
+        const socketClient = await connectSocketServer('');
 
-    socketClient.on('welcome', data => {
-        console.log(data);
-    });
-
-    // Posibilidades de emisión del lado del CLIENTE
-    // Un cliente solo puede utilizar un único método emit, que notificará al servidor
-    socketClient.emit('init_message', 'Hola a todos, soy el Cliente Carlos');
+        // Posibilidades de emisión del lado del CLIENTE
+        // Un cliente solo puede utilizar un único método emit, que notificará al servidor
+        socketClient.emit('init_message', { node: 23, name: 'client_23', location: 'Rafaela, AR' });
+    })();
 </script>
