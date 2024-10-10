@@ -27,6 +27,7 @@ const httpServer = app.listen(config.PORT, () => {
 
 // Creamos instancia de SERVIDOR socket.io, pasándole como referencia la constante anterior
 const socketServer = new Server(httpServer);
+app.set('socketServer', socketServer);
 
 // Activamos un listener en el servidor de sockets, que escucha por nuevas conexiones de clientes
 socketServer.on('connection', socket => {

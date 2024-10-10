@@ -32,6 +32,11 @@ router.post('/', auth, uploader.single('thumbnail'), (req, res) => { // gestión
         const maxId = Math.max(...users.map(element => +element.id));
         const newUser = { id: maxId + 1, firstName: firstName, lastName: lastName };
         users.push(newUser);
+
+        // Recuperamos la instancia global de socketServer para poder realizar un emit
+        const socketServer = req.app.get('socketServer');
+        socketServer.emit('new_user', newUser);
+        
         res.status(200).send({ error: null, data: newUser, file: req.file });
     } else {
         res.status(400).send({ error: 'Faltan campos obligatorios', data: [] });
