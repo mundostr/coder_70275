@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { uploader } from '../uploader.js';
-import { users } from '../config.js';
+// Importamos el modelo de usuario, en adelante TODAS las consultas relacionadas a usuarios
+// serán hechas a través de este modelo
 import userModel from '../dao/models/user.model.js';
 
 
@@ -20,6 +21,15 @@ const auth = (req, res, next) => {
      */
 }
 
+/**
+ * Observar los 4 endpoints del CRUD.
+ * Utilizamos la notación de puntos desde el objeto userModel
+ * 
+ * GET: userModel.find().lean() -> lean permite "limpiar" la consulta y obtener un objeto plano Javascript (POJO)
+ * POST: userModel.create()
+ * PUT: userModel.findOneAndUpdate()
+ * DELETE: userModel.findOneAndDelete()
+ */
 router.get('/', async (req, res) => {
     const data = await userModel.find().lean();
     res.status(200).send({ error: null, data: data });
@@ -59,11 +69,12 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 router.delete('/:id', auth, async (req, res) => {
-    const id = parseInt(req.params.id);
-    const index = users.findIndex(element => element.id === id);
+    const { id } = req.params;
+    const filter = { _id: id };
+
+    const process = await userModel.findOneAndDelete(filter);
     
-    if (index > -1) {
-        users.splice(index, 1);
+    if (process) {
         res.status(200).send({ error: null, data: 'Usuario borrado' });
     } else {
         res.status(404).send({ error: 'No se encuentra el usuario', data: [] });
