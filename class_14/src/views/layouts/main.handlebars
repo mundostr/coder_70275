@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+  </head>
+  <body>
+    {{!-- Esta plantilla main se cargará en TODA solicitud que maneje Handlebars.
+    El marcador body debajo, será reemplazado por el contenido parseado de la
+    plantilla secundaria indicada en el res.render(). --}}
+    <div class="container-fluid" style="background-color: #333; color: #fff; padding: 1em;">
+      {{{body}}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
