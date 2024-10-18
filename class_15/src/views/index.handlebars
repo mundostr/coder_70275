@@ -1,0 +1,27 @@
+<div>
+    {{!-- Handlebars utilizar las dobles llaves para indicar una variable que debe ser reemplazada.
+
+    Podemos utilizar HTML + CSS + Javascript standard en las plantillas, incluso
+    aprovechar el servicio de contenidos estáticos que tenemos habilitado en nuestra
+    app --}}
+    
+    {{!-- <img src="https://styles.redditmedia.com/t5_5blkvq/styles/communityIcon_t5ji6wuld2z71.jpg?format=pjpg&s=1672be49333cd14749784be8bbc3c968a033d8e0" style="width: 300px;"> --}}
+    <img src="/static/img/logo_coderhouse.png" style="width: 350px;">
+    <h1>Hola {{firstName}}, {{lastName}} bienvenido al sistema!</h1>
+    
+    <ul>
+        <li>{{age}}</li>
+        <li>{{email}}</li>
+        <li>{{phone}}</li>
+    </ul>
+
+    {{!-- También podemos utilizar condiciones y loops, pero NO podemos evaluar
+    expresiones en la condición, solo pasar variables booleanas ya evaluadas --}}
+    {{#if isAdmin}}
+        <ul>
+        {{#each users}}
+            <li>{{this.id}}, {{this.firstName}}, {{this.lastName}}</li>
+        {{/each}}
+        </ul>
+    {{/if}}
+</div>

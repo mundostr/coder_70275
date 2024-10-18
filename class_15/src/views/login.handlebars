@@ -1,0 +1,42 @@
+<style>
+    .login-container {
+        margin-top: 64px !important;
+        max-width: 360px;
+        margin: auto;
+        padding: 32px;
+        border-radius: 0.5em;
+        color: #fff;
+        border: 1px solid #666;
+    }
+
+    .a2 {
+        color: #e1e1e1;
+    }
+
+    .a2:hover {
+        color: #fff;
+    }
+</style>
+
+<div class="login-container">
+    <h1><b>CODERStore</b></h1>
+    <h2><b>Login de usuario</b></h2>
+
+    <form action="/api/users/login" method="post">
+        <div class="input-group" style="width: 300px; margin-bottom: 32px;">
+            <span class="input-group-text" id="group1"><i class="fa-solid fa-user"></i></span>
+            <input type="email" name="username" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
+        </div>
+
+        <div class="input-group" style="width: 300px; margin-bottom: 32px;">
+            <span class="input-group-text" id="group2"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" name="password" class="form-control" required="required">
+        </div>
+            
+        <button type="submit" class="btn btn-success">Ingresar</button>
+
+        <div style="margin-top: 24px;">
+            No tenés cuenta?: <a class="a2" href="/views/register">Registrate</a>
+        </div>
+    </form>
+</div>
