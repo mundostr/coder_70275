@@ -1,0 +1,46 @@
+<div>
+    <h1>CODER Chat</h1>
+    <h2>Ejemplo de cliente Socket.IO</h2>
+</div>
+
+{{!-- Podemos recuperar el cliente de socket.io con esta ruta, si estamos usando una plantilla de Handlebars --}}
+<script src="/socket.io/socket.io.js"></script>
+
+{{!-- Si este front está alojado en otro lugar, debemos descargar el cliente desde una CDN por ejemplo.
+Por supuesto, podemos también usar esta opción con Handlebars --}}
+{{!-- <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.8.0/build/cjs/index.min.js"></script> --}}
+
+<script>
+    // Función para conexión asíncrona al servidor socket.io
+    const connectSocketServer = async (url, options) => {
+        return new Promise((resolve, reject) => {
+            const socket = io(url, options = {});
+
+            socket.on('connect', () =>{
+                console.log(`Conectado servidor socket.io ${url}`);
+                resolve(socket);
+            });
+            
+            socket.on('connect_error', err => {
+                console.error('ERROR al conectar servidor socket.io', err);
+                reject(err);
+            });
+
+            socket.on('welcome', data => {
+                console.log(data);
+            });
+        });
+    }
+
+    // Creamos intancia de CLIENTE socket.io
+    // Si usamos Handlebars, podemos dejar la url vacía, conectará de forma automática al servidor local,
+    // si este front está alojado en otro lugar, indicamos la ruta
+    // const socketClient = await connectSocketServer('https://serverremoto.com:puerto', options);
+    (async () => {
+        const socketClient = await connectSocketServer('');
+
+        // Posibilidades de emisión del lado del CLIENTE
+        // Un cliente solo puede utilizar un único método emit, que notificará al servidor
+        socketClient.emit('init_message', { node: 23, name: 'client_23', location: 'Rafaela, AR' });
+    })();
+</script>
