@@ -26,8 +26,8 @@ const httpServer = app.listen(config.PORT, async () => {
 
     app.use('/views', viewsRouter);
     app.use('/api/users', usersRouter);
-    // app.use('/api/products', productsRouter);
     app.use('/api/carts', cartsRouter);
+    // app.use('/api/products', productsRouter);
     app.use('/static', express.static(`${config.DIRNAME}/public`));
     
     console.log(`Server activo en puerto ${config.PORT} conectado a bbdd`);
