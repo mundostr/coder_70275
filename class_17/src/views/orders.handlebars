@@ -1,0 +1,10 @@
+<div>
+    <h1><b>CODERStore</b></h1>
+    <h2><b>Pedidos</b></h2>
+    
+    <ul class="list-group">
+        {{#each orders}}
+            <li class="list-group-item">{{this.date}} -> {{this.name}} ({{this.size}}): {{this.quantity}}</li>
+        {{/each}}
+    </ul>
+</div>
