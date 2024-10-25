@@ -2,8 +2,9 @@
     <h1><b>CODERStore</b></h1>
     <h2><b>Pedidos</b></h2>
     
+    <h3>Pg {{orders.page}} / {{orders.totalPages}} (sig -> {{orders.nextPage}})</h3>
     <ul class="list-group">
-        {{#each orders}}
+        {{#each orders.docs}}
             <li class="list-group-item">{{this.date}} -> {{this.name}} ({{this.size}}): {{this.quantity}}</li>
         {{/each}}
     </ul>

@@ -11,7 +11,8 @@ const config = {
     USERS_COLLECTION: 'users_indexing',
     CARTS_COLLECTION: 'carts',
     PRODUCTS_COLLECTION: 'products',
-    ORDERS_COLLECTION: 'orders'
+    ORDERS_COLLECTION: 'orders',
+    ITEMS_PER_PAGE: 10
 };
 
 

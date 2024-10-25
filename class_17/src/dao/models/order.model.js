@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 import config from '../../config.js';
 
 mongoose.pluralize(null);
@@ -14,6 +15,7 @@ const schema = new mongoose.Schema({
     quantity: { type: Number, required: true },
     date: { type: Date, required: true }
 });
+schema.plugin(mongoosePaginate);
 
 const model = mongoose.model(collection, schema);
 

@@ -1,4 +1,5 @@
 import orderModel from './models/order.model.js';
+import config from '../config.js';
 
 
 class OrderController {
@@ -7,6 +8,14 @@ class OrderController {
     get = async () => {
         try {
             return await orderModel.find().lean();
+        } catch (err) {
+            return err.message;
+        }
+    }
+
+    getPaginated = async (pg) => {
+        try {
+            return await orderModel.paginate({}, { limit: config.ITEMS_PER_PAGE, page: pg, lean: true });
         } catch (err) {
             return err.message;
         }
